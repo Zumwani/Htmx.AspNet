@@ -19,7 +19,6 @@ jobs:
 
     - name: Build and publish
       run: |
-        dotnet build -c Release
-        dotnet nuget push **/*.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/zumwani/index.json
+        dotnet nuget push **/*.nupkg --api-key ${{ token }} --source https://nuget.pkg.github.com/zumwani/index.json
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: true
