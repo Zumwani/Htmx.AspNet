@@ -1,19 +1,25 @@
-name: Detect and Publish NuGet packages
+name: Publish NuGet Package to GitHub Packages
 
 on:
   push:
-    paths:
-      - '**/*.nupkg'
+    branches:
+      - main  # Adjust this according to your branch name
+  workflow_dispatch:  # Manually trigger workflow from Actions tab
 
 jobs:
-  publish-package:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.x'  # Specify the .NET version you need
 
-      - name: Publish to NuGet Package Feed
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}  # Ensure this secret is configured in your repository
-        run: |
-          nuget push **/*.nupkg -Source "https://www.nuget.org/api/v2/package"
+    - name: Build and publish
+      run: |
+        dotnet build -c Release
+        dotnet nuget push **/*.nupkg --api-key ${{ github.token }} --source https://nuget.pkg.github.com/zumwani/index.json
+      env:
+        DOTNET_CLI_TELEMETRY_OPTOUT: true
