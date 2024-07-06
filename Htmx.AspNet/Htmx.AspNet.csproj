@@ -8,7 +8,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<IsPackable>true</IsPackable>
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Description>Adds Htmx support for asp.net.</Description>
 		<PackageProjectUrl>https://github.com/Zumwani/Htmx.AspNet</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Zumwani/Htmx.AspNet</RepositoryUrl>
