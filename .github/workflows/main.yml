@@ -19,6 +19,6 @@ jobs:
 
     - name: Build and publish
       run: |
-        dotnet nuget push **/*.nupkg --api-key ${{ secrets.token }} --source https://nuget.pkg.github.com/zumwani/index.json
+        dotnet nuget push **/*.nupkg --skip-duplicate --api-key ${{ secrets.token }} --source https://nuget.pkg.github.com/zumwani/index.json
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: true
