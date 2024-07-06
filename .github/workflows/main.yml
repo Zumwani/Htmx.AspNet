@@ -1,0 +1,19 @@
+name: Detect and Publish NuGet packages
+
+on:
+  push:
+    paths:
+      - '**/*.nupkg'
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Publish to NuGet Package Feed
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}  # Ensure this secret is configured in your repository
+        run: |
+          nuget push **/*.nupkg -Source "https://www.nuget.org/api/v2/package"
